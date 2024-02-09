@@ -1,0 +1,247 @@
+$activelink:#ff214f;
+$border: rgb(168, 164, 164);
+$bg:#fbfcfc;
+
+@mixin maxwidth($w) {
+    @media only screen and (max-width:$w) {
+        @content;
+    }
+}
+
+@mixin minwidth($w) {
+    @media only screen and (min-width:$w) {
+        @content;
+    }
+}
+
+.nav-item {
+
+    .nav-link {
+        &:hover {
+            color: $activelink !important;
+        }
+    }
+
+    .active {
+        color: $activelink !important;
+    }
+}
+
+
+.h1 {
+    font-size: 6rem;
+}
+
+.h4 {
+    letter-spacing: .1rem;
+}
+
+.custom-navbar {
+    min-height: 70px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 95%;
+    max-width: 1050px;
+    border: 1px solid rgba(234, 240, 252, 0.15);
+    border-radius: 0.2rem;
+    z-index: 9999;
+    transition: all, 0.33s;
+    padding: 0 10px;
+}
+
+header {
+    height: 100vh;
+    min-height: 600px;
+    background: url(../imgs/header.jpg) no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+
+    .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        color: #fff;
+    }
+}
+
+
+
+section.has-bg-img {
+    background: rgba(33, 37, 41, 0.95);
+    position: relative;
+    color: #fff;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(../imgs/section.jpg);
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+}
+
+.uprcards {
+    margin-top: -10rem;
+}
+
+.cborder {
+    border: 0;
+}
+
+.widget {
+    width: 180px;
+    height: 180px;
+    border: 2px solid $activelink;
+    border-radius: 50%;
+    position: relative;
+
+    &::after {
+        content: '>';
+        position: absolute;
+        right: -30%;
+        color: $activelink;
+        font-size: 20px;
+    }
+}
+
+.last {
+    &::after {
+        content: "";
+    }
+}
+
+#portfolio {
+    background-color: $bg;
+
+    .img-wrapper {
+        position: relative;
+        cursor: pointer;
+
+        .img-overlay {
+            position: absolute;
+            height: 0;
+            width: 100%;
+            bottom: 0;
+            background: rgba($activelink, $alpha: .8);
+            border-radius: 5px;
+            visibility: hidden;
+            transition: .5s all ease;
+
+            .overlay-infos {
+                opacity: 0;
+                transition: .2s all ease;
+            }
+        }
+
+        &:hover .img-overlay {
+            height: 100%;
+            visibility: visible;
+        }
+
+        &:hover .overlay-infos {
+            opacity: 1;
+        }
+    }
+}
+
+input:focus,
+textarea:focus {
+    // box-shadow: auto auto $activelink !important;
+    border-color: $activelink !important;
+    box-shadow: 0 0 5px 2px lighten($activelink, 30) !important;
+}
+
+.submitbtn {
+    background-color: $activelink;
+    border-radius: 3px;
+    border: 0;
+    color: #fff !important;
+
+    &:hover,
+    &:active {
+        background-color: darken($activelink, 10);
+    }
+}
+
+#footer {
+    background-color: $bg;
+
+    a {
+        text-decoration: none;
+        color: $activelink;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+.upbtn {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    position: fixed;
+    z-index: 100;
+    bottom: 2%;
+}
+
+.leftupbtn {
+    left: 2%;
+}
+
+.rightupbtn {
+    right: 2%;
+}
+
+@include maxwidth(1000px) {
+    .w-75 {
+        width: 90% !important;
+    }
+
+    .uprcards {
+        margin-top: 1rem;
+    }
+
+    .cborder {
+        border: 1px solid $border !important;
+    }
+
+    .widget {
+        &::after {
+            content: "";
+        }
+    }
+}
+
+@include maxwidth(450px) {
+    .w-75 {
+        width: 100% !important;
+    }
+
+    .custom-navbar {
+        top: 15px;
+    }
+
+    .h1 {
+        font-size: 3.5rem;
+    }
+
+    .h4 {
+        letter-spacing: unset;
+    }
+}
